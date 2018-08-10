@@ -20,7 +20,7 @@ public class SecurityQuestionController {
         return questionService.createQuestion();
     }
 
-    @PatchMapping(value = "")
+    @PutMapping(value = "")
     public SecurityQuestion answerQuestion(@RequestBody SecurityQuestion question) {
         if (!questionService.validateAnswer(question)) {
             throw new IncorrectAnswerException();
