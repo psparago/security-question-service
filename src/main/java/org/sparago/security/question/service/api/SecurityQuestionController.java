@@ -1,6 +1,7 @@
 package org.sparago.security.question.service.api;
 
 import org.sparago.security.question.service.core.QuestionService;
+import org.sparago.security.question.service.exception.IncorrectAnswerException;
 import org.sparago.security.question.service.model.SecurityQuestion;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,16 +17,13 @@ public class SecurityQuestionController {
 
     @GetMapping(value = "")
     public SecurityQuestion getQuestion(){
-        SecurityQuestion question = questionService.createQuestion();
-        return question;
+        return questionService.createQuestion();
     }
 
     @PatchMapping(value = "")
     public SecurityQuestion answerQuestion(@RequestBody SecurityQuestion question) {
-        if (questionService.validateAnswer(question)) {
-
-        } else {
-
+        if (!questionService.validateAnswer(question)) {
+            throw new IncorrectAnswerException();
         }
         return question;
     }

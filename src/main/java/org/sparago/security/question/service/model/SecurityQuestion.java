@@ -1,10 +1,13 @@
 package org.sparago.security.question.service.model;
 
 import lombok.Data;
+import java.util.List;
 
 @Data
 public class SecurityQuestion {
-    private String questionText;
-    private int[] numbers;
-    private int answer;
+    private final String questionText;
+
+    private final List<Integer> numbers;
+
+    private final int answer;
 }
